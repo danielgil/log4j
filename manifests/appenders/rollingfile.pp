@@ -79,7 +79,7 @@ define log4j::appenders::rollingfile(
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/DefaultRolloverStrategy/#attribute/fileIndex ${strategy_fileindex}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/DefaultRolloverStrategy/#attribute/min ${strategy_min}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/DefaultRolloverStrategy/#attribute/max ${strategy_max}",
-    "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/DefaultRolloverStrategy/#attribute/compressionLevel ${strategy}",
+    "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/DefaultRolloverStrategy/#attribute/compressionLevel ${strategy_compression}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/PatternLayout/#attribute/pattern '${layout}'",
   ]
 
