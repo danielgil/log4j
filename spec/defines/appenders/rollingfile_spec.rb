@@ -10,6 +10,7 @@ describe 'log4j::appenders::rollingfile' do
     } }
   let(:params) {{
       :path => '/tmp/test.xml',
+      :filename => '/tmp/somelog.log',
   }}
 
   it { should compile.with_all_deps }

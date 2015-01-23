@@ -16,7 +16,7 @@ Rake::Task[:lint].clear
 PuppetLint::RakeTask.new :lint do |config|
   config.pattern = '**/*.pp'
   config.ignore_paths = exclude_paths
-  config.disable_checks = ['documentation', '80chars', 'autoloader_layout']
+  config.disable_checks = ['documentation', '80chars', 'autoloader_layout', 'single_quote_string_with_variables']
   config.with_filename = false
   config.fail_on_warnings = false
   config.log_format = '%{path}:%{line}:%{check}:%{KIND}:%{message}'
