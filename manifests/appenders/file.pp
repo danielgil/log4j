@@ -9,6 +9,17 @@ define log4j::appenders::file(
   $ignoreexceptions=true,
   $layout='%d{ISO8601} [%t] %-2p %c{1} %m%n'
 ){
+
+  validate_re($path, '.+\.xml$')
+  validate_absolute_path($path)
+  validate_re($buffersize, '^\d+$')
+  validate_bool($append)
+  validate_bool($bufferedio)
+  validate_bool($immediateflush)
+  validate_bool($locking)
+  validate_bool($ignoreexceptions)
+
+
   augeas {"appender-${name}":
     incl    =>  $path,
     lens    => 'Xml.lns',
