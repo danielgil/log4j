@@ -33,6 +33,16 @@ describe 'A server where we run the log4j Puppet module' do
             require  => Log4j::Configfile['test']
           }
 
+          log4j::appenders::rollingfile {'rollbaby':
+            path           => $xmlpath,
+            filename       => '/tmp/somelog.log',
+            layout         => '%d{ISO8601} [%t] %-2p %c{1} %m%n',
+            strategy       => 'max="20"',
+            policy_startup => true,
+            policy_size    => 'size="250 MB"',
+            require        => Log4j::Configfile['test']
+          }
+
           log4j::logger {'first.test':
             path       => $xmlpath,
             level      => 'INFO',
