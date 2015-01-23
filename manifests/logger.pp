@@ -1,7 +1,7 @@
 define log4j::logger($path, $level, $additivity){
 
   validate_bool($additivity)
-  validate_re($level, '^(OFF|FATAL|ERROR|WARN|INFO|DEBUG|TRACE|ALL)$')
+  validate_re($level, '^(?i:OFF|FATAL|ERROR|WARN|INFO|DEBUG|TRACE|ALL)$')
 
   augeas {$name:
     incl    =>  $path,

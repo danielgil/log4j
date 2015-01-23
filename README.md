@@ -6,11 +6,24 @@ either from Hiera data or from Puppet manifests.
 
 ## Installation
 
-TBD
+From the Forge:
+```
+puppet module install danielgil-log4j
+```
+
+Cloning from Github into your **$MODULEPATH** directory:
+```
+git clone https://github.com/danielgil/log4j.git /etc/puppetlabs/puppet/modules/log4j
+```
 
 ## Usage
 
 TBD
+
+## Limitations
+
+1. For now, log4j::appenders::file only uses 'PatternLayout' and does not accept Filters.
+
 
 ## Contributing
 
@@ -19,7 +32,3 @@ TBD
 3. Commit your changes: `git commit -am 'Add some feature'`
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request :D
-
-## History
-
-TBD

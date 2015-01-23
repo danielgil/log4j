@@ -1,9 +1,8 @@
 require 'spec_helper_acceptance'
 
-describe 'A server where we run the ELK Puppet module' do
+describe 'A server where we run the log4j Puppet module' do
 
-    context 'during the installation' do
-      it 'should install ELK with no errors' do
+      it 'should generate the log4j configuration with no errors' do
         pp = <<-EOS
           $allow_virtual_packages = false
 
@@ -15,6 +14,14 @@ describe 'A server where we run the ELK Puppet module' do
             group           => 'root',
             mode            => '0644',
             monitorInterval => '40',
+            rootLevel       => 'INFO',
+            replace         => false,
+          }
+
+          log4j::appenders::file {'somefile':
+            path     => $xmlpath,
+            filename => '/tmp/somelog.log',
+            layout   => '%d{ISO8601} [%t] %-2p %c{1} %m%n',
           }
 
           log4j::logger {'first.test':
@@ -35,6 +42,4 @@ describe 'A server where we run the ELK Puppet module' do
         # Test twice for idempotency
         expect(apply_manifest(pp, :catch_failures => true).exit_code).to eq 0
       end
-    end
-
 end
