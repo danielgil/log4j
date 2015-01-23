@@ -1,8 +1,8 @@
-# $ puppet-log4j
+# puppet-log4j
 
 This is a puppet module to manage your log4j2 configuration programatically.
-It provides types for loggers and appenders so that your finall log4j config can be generated
-either from Hiera data or from puppet manifests.
+It provides types for loggers and appenders so that your final log4j config can be generated
+either from Hiera data or from Puppet manifests.
 
 ## Installation
 

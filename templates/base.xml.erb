@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration monitorInterval="30">
+<Configuration monitorInterval="<%= @monitorInterval -%>">
     <Appenders>
-
 
     </Appenders>
 
     <Loggers>
 
 
-        <Root level="<%= @rootlevel %>">
+        <Root level="<%= @rootLevel -%>">
 
         </Root>
     </Loggers>
-
 </Configuration>
