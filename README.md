@@ -11,7 +11,7 @@ From the Forge:
 puppet module install danielgil-log4j
 ```
 
-Cloning from Github into your **$MODULEPATH** directory:
+Cloning from Github into your `$MODULEPATH` directory, e.g.:
 ```
 git clone https://github.com/danielgil/log4j.git /etc/puppetlabs/puppet/modules/log4j
 ```
@@ -22,7 +22,7 @@ TBD
 
 ## Limitations
 
-1. For now, log4j::appenders::file only uses 'PatternLayout' and does not accept Filters.
+1. For now, `log4j::appenders::file` only uses `PatternLayout` and does not accept `Filters`.
 
 
 ## Contributing
