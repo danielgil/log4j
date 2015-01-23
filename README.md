@@ -94,6 +94,7 @@ log4j::appenders::rollingfile {'rollbaby':
   policy_size          => '',
   policy_time          => '',
 }
+```
 
 #### Add Loggers ####
 To To add a logger for a specific class, use the name of the class as the name of the `logger`.
