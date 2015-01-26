@@ -58,6 +58,56 @@ describe 'A server where we run the log4j Puppet module' do
             require  => Log4j::Configfile['test']
           }
 
+          $data = {
+             '/tmp/somefile.xml' => {
+              'loggers' => {
+                'com.example.my.class' => {
+                    'level'      => 'INFO',
+                    'additivity' => true
+                },
+                'com.example.my.other.class' => {
+                    'level'      => 'ERROR',
+                    'additivity' => true
+                }
+              },
+              'appenders' => {
+                'appender1' => {
+                    'type'   => 'console',
+                    'follow' => true,
+                    'layout' => '%m%n'
+                }
+              }
+            },
+            '/tmp/otherfile.xml' => {
+              'loggers' => {
+                'com.someorg.some.class' => {
+                    'level'      => 'ERROR',
+                    'additivity' => true
+                },
+                'com.someorg.another.class' => {
+                    'level'      => 'ERROR',
+                    'additivity' => false
+                }
+              },
+              'appenders' => {
+                'someappender' => {
+                    'type'           => 'rollingfile',
+                    'filename'       => '/opt/someapp/logs/error.log',
+                    'layout'         => '%d{ISO8601} [%t] %-2p %c{1} %m%n',
+                    'policy_startup' => false,
+                    'policy_size'    => '200 Mb'
+                },
+                'otherappender' => {
+                    'type'           => 'file',
+                    'filename'       => '/opt/otherapp/logs/access.log',
+                    'layout'         => '%-2p %c{1} %m%n',
+                }
+              }
+            }
+          }
+
+          log4j($data)
+
         EOS
 
         expect(apply_manifest(pp, :catch_failures => true).exit_code).to eq 2

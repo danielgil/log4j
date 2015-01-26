@@ -22,7 +22,7 @@ To generate a log4j.xml directly from a Yaml file, you can use a structure of ne
 1. Top level: configuration file paths, e.g. `/tmp/config.xml`. This element has
 two required elements, `loggers` and `appenders`, plus the normal optional parameters of the `log4j::configfile` class.
 2. `Loggers` is a hash of hashes representing each logger. See the parameters of `log4j::logger`.
-3. `Appenders` is a hash of hashes representing each appender. Notice the `type` parameter can be `console,
+3. `Appenders` is a hash of hashes representing each appender. Notice the `type` parameter can be `console`,
 `file` or `rollingfile`.
 
 
