@@ -37,7 +37,7 @@ define log4j::appenders::rollingfile(
 
   # Policy attributes validation
   validate_bool($policy_startup)
-  validate_re($policy_size, '^(\d+\s?[MKG]B){0,1}$')
+  validate_re($policy_size, '^(?i:\d+\s?[MKG]B){0,1}$')
   validate_re($policy_time, '^([1-9]){0,1}$')
 
   if $policy_time != '' {

@@ -16,7 +16,49 @@ Cloning from Github into your `$MODULEPATH` directory, e.g.:
 git clone https://github.com/danielgil/log4j.git /etc/puppetlabs/puppet/modules/log4j
 ```
 
-## Usage
+## Usage (from Hiera)
+To generate a log4j.xml directly from a Yaml file, you can use a structure of nested hashes:
+
+1. Top level: configuration file paths, e.g. `/tmp/config.xml`. This element has
+two required elements, `loggers` and `appenders`, plus the normal optional parameters of the `log4j::configfile` class.
+2. `Loggers` is a hash of hashes representing each logger. See the parameters of `log4j::logger`.
+3. `Appenders is a hash of hashes representing each appender. Notice the `type` parameter can be `console,
+`file` or `rollingfile`.
+
+
+Full example:
+```
+---
+log4j::data:
+  '/tmp/config.xml':
+    loggers:
+      my.class:
+        level: 'INFO'
+        additivity: true
+      my.other.class:
+        level: 'ERROR'
+        additivity: true
+    appenders:
+      appender1:
+        type: 'console'
+        follow: true
+  '/opt/otherapp.xml':
+    loggers:
+      my.awesome.class:
+        level: 'INFO'
+        additivity: true
+    appenders:
+      someappender:
+        type: 'console'
+        layout: '%m%n'
+      anotherappender:
+        type: 'rollingfile'
+        layout: '%d{ISO8601} [%t] %-2p %c{1} %m%n'
+        policy_startup: false
+        policy_size: '200 Mb'
+```
+
+## Usage (from Puppet Manifests)
 
 #### Config Skeleton ####
 Create skeleton configuration files with `log4j::configfile`. Only `path` is required.

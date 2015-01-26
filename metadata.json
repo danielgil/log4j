@@ -5,7 +5,7 @@
   "license": "Apache-2.0",
   "summary": "Manages log4j configuration files",
   "source": "https://github.com/danielgil/log4j",
-  "project_page": "https://forge.puppetlabs.com/danielgil/log4j",
+  "project_page": "https://github.com/danielgil/log4j",
   "issues_url": "https://github.com/danielgil/log4j/issues",
   "tags": ["log4j", "java"],
   "operatingsystem_support": [
