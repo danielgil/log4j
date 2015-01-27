@@ -10,7 +10,8 @@ define log4j::logger($path, $level, $additivity){
       "set Configuration/Loggers/Logger[./#attribute/name = '${name}']/#attribute/name ${name}",
       "set Configuration/Loggers/Logger[./#attribute/name = '${name}']/#attribute/level ${level}",
       "set Configuration/Loggers/Logger[./#attribute/name = '${name}']/#attribute/additivity ${additivity}",
-    ]
+    ],
+    require => Log4j::Configfile[$path]
   }
 
 

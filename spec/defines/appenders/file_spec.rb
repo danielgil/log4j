@@ -13,7 +13,6 @@ describe 'log4j::appenders::file' do
     :filename => '/tmp/somelog.log',
   }}
 
-  it { should compile.with_all_deps }
   it { should contain_log4j__appenders__file('test')}
 
   it { should contain_augeas('appender-test').with({
