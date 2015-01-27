@@ -21,7 +21,6 @@ define log4j::appenders::console(
       "set Configuration/Appenders/Console[./#attribute/name = '${name}']/#attribute/ignoreExceptions ${ignoreexceptions}",
       "set Configuration/Appenders/Console[./#attribute/name = '${name}']/PatternLayout/#attribute/pattern '${layout}'",
     ],
-    require => Log4j::Configfile[$path]
   }
 
   augeas {"appenderref-${name}":
@@ -30,6 +29,5 @@ define log4j::appenders::console(
     changes => [
       "set Configuration/Loggers/Root/AppenderRef[./#attribute/ref = '${name}']/#attribute/ref ${name}",
     ],
-    require => Log4j::Configfile[$path]
   }
 }

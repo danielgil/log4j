@@ -34,7 +34,6 @@ define log4j::appenders::file(
       "set Configuration/Appenders/File[./#attribute/name = '${name}']/#attribute/ignoreExceptions ${ignoreexceptions}",
       "set Configuration/Appenders/File[./#attribute/name = '${name}']/PatternLayout/#attribute/pattern '${layout}'",
     ],
-    require => Log4j::Configfile[$path]
   }
 
   augeas {"appenderref-${name}":
@@ -43,6 +42,5 @@ define log4j::appenders::file(
     changes => [
       "set Configuration/Loggers/Root/AppenderRef[./#attribute/ref = '${name}']/#attribute/ref ${name}",
     ],
-    require => Log4j::Configfile[$path]
   }
 }

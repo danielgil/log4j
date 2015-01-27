@@ -30,6 +30,8 @@ describe 'log4j::configfile' do
 
   it { should contain_file('/tmp/test.xml').with_content(/monitorInterval="60"/)}
   it { should contain_file('/tmp/test.xml').with_content(/Root level="INFO"/)}
+  it { should contain_package('libxml2').with_ensure('installed')}
+  it { should contain_exec('lint-/tmp/test.xml').with_refreshonly('true')}
 
 
   context 'when the path is invalid' do
@@ -41,7 +43,6 @@ describe 'log4j::configfile' do
 
   context 'when monitorInterval is not a digit' do
     let(:params) {{
-        :path            => '/tmp/',
         :monitorInterval => 'notadigit',
     }}
     it { should_not compile }
@@ -49,7 +50,6 @@ describe 'log4j::configfile' do
 
   context 'when rootLevel is not a log4j level' do
     let(:params) {{
-        :path      => '/tmp/',
         :rootLevel => 'NOTALEVEL',
     }}
     it { should_not compile }

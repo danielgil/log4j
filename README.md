@@ -81,8 +81,12 @@ log4j::configfile {'/tmp/config.xml':
   monitorInterval => '40',
   rootLevel       => 'INFO',
   replace         => false,
+  xmllint         => true,
 }
 ```
+The `xmllint` parameter, if set to true, will install `libxml2` and use it to format the
+resulting log4j configuration file.
+
 #### Add Appenders ####
 
 The `File` appender writes to a file. Only `path` and `filename` are required.
