@@ -8,7 +8,6 @@ define log4j::appenders::syslog(
     changes => [
       "set Configuration/Appenders/Syslog[./#attribute/name = '${name}']/#attribute/name '${name}'",
     ],
-    require => Log4j::Configfile[$path]
   }
 
   augeas {"appenderref-${name}":
@@ -17,6 +16,5 @@ define log4j::appenders::syslog(
     changes => [
       "set Configuration/Loggers/Root/AppenderRef[./#attribute/ref = '${name}']/#attribute/ref ${name}",
     ],
-    require => Log4j::Configfile[$path]
   }
 }

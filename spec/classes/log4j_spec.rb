@@ -74,4 +74,5 @@ describe 'log4j' do
          'layout'   => '%-2p %c{1} %m%n'
      })}
   it { should contain_log4j__appenders__rollingfile('someappender') }
+
 end
