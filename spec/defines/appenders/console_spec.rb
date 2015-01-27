@@ -14,7 +14,6 @@ describe 'log4j::appenders::console' do
       :ignoreexceptions => false,
   }}
 
-  it { should compile.with_all_deps }
   it { should contain_log4j__appenders__console('test')}
 
   it { should contain_augeas('appender-test').with({

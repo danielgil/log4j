@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'log4j::configfile' do
-  let(:title) { 'test' }
+  let(:title) { '/tmp/test.xml' }
   let(:facts) {
     {:operatingsystemrelease => '6.5',
      :osfamily               => 'RedHat',
@@ -9,7 +9,6 @@ describe 'log4j::configfile' do
      :kernel                 => 'Linux',
     } }
   let(:params) {{
-      :path            => '/tmp/test.xml',
       :user            => 'batman',
       :group           => 'heroes',
       :mode            => '0644',
@@ -19,7 +18,7 @@ describe 'log4j::configfile' do
   }}
 
   it { should compile.with_all_deps }
-  it { should contain_log4j__configfile('test')}
+  it { should contain_log4j__configfile('/tmp/test.xml')}
 
   it { should contain_file('/tmp/test.xml').with({
      'ensure'  => 'present',

@@ -8,8 +8,7 @@ describe 'A server where we run the log4j Puppet module' do
 
           $xmlpath = '/tmp/test.xml'
 
-          log4j::configfile {'test':
-            path            => $xmlpath,
+          log4j::configfile {'/tmp/test.xml':
             user            => 'root',
             group           => 'root',
             mode            => '0644',
@@ -22,7 +21,6 @@ describe 'A server where we run the log4j Puppet module' do
             path     => $xmlpath,
             filename => '/tmp/somelog.log',
             layout   => '%d{ISO8601} [%t] %-2p %c{1} %m%n',
-            require  => Log4j::Configfile['test']
           }
 
           log4j::appenders::console {'stdout':
@@ -30,7 +28,6 @@ describe 'A server where we run the log4j Puppet module' do
             target   => 'SYSTEM_OUT',
             ignoreexceptions => false,
             layout   => '%L - %m%n',
-            require  => Log4j::Configfile['test']
           }
 
           log4j::appenders::rollingfile {'rollbaby':
@@ -41,21 +38,18 @@ describe 'A server where we run the log4j Puppet module' do
             policy_startup       => true,
             policy_size          => '250 MB',
             policy_time          => '1',
-            require              => Log4j::Configfile['test']
           }
 
           log4j::logger {'first.test':
             path       => $xmlpath,
             level      => 'INFO',
             additivity => true,
-            require  => Log4j::Configfile['test']
           }
 
           log4j::logger {'second.test':
             path       => $xmlpath,
             level      => 'ERROR',
             additivity => false,
-            require  => Log4j::Configfile['test']
           }
 
           $data = {
@@ -106,7 +100,9 @@ describe 'A server where we run the log4j Puppet module' do
             }
           }
 
-          log4j($data)
+          class {log4j:
+              data => $data
+          }
 
         EOS
 

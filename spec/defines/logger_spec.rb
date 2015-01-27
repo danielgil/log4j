@@ -14,7 +14,6 @@ describe 'log4j::logger' do
       :additivity => true,
   }}
 
-  it { should compile.with_all_deps }
   it { should contain_log4j__logger('test.class')}
 
   it { should contain_augeas('test.class').with({

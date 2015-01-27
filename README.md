@@ -65,19 +65,16 @@ log4j::data:
 ## Usage (from Puppet Manifests)
 
 #### Config Skeleton ####
-Create skeleton configuration files with `log4j::configfile`. Only `path` is required.
+Create skeleton configuration files with `log4j::configfile`.
 
 Minimal:
 ```
-log4j::configfile {'test':
-  path            => '/tmp/config.xml',
-}
+log4j::configfile {'/tmp/config.xml':}
 ```
 
 Full:
 ```
-log4j::configfile {'test':
-  path            => /tmp/config.xml',
+log4j::configfile {'/tmp/config.xml':
   user            => 'root',
   group           => 'root',
   mode            => '0644',

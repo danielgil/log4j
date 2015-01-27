@@ -87,6 +87,7 @@ define log4j::appenders::rollingfile(
     incl    =>  $path,
     lens    => 'Xml.lns',
     changes => $appenderchanges,
+    require => Log4j::Configfile[$path]
   }
 
   augeas {"appenderref-${name}":
@@ -94,6 +95,7 @@ define log4j::appenders::rollingfile(
     lens    => 'Xml.lns',
     changes => [
       "set Configuration/Loggers/Root/AppenderRef[./#attribute/ref = '${name}']/#attribute/ref ${name}",
-    ]
+    ],
+    require => Log4j::Configfile[$path]
   }
 }

@@ -12,7 +12,6 @@ describe 'log4j::appenders::syslog' do
       :path => '/tmp/test.xml',
   }}
 
-  it { should compile.with_all_deps }
   it { should contain_log4j__appenders__syslog('test')}
 
   it { should contain_augeas('appender-test') }

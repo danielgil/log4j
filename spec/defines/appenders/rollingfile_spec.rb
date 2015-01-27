@@ -16,7 +16,6 @@ describe 'log4j::appenders::rollingfile' do
       :policy_time    => '',
   }}
 
-  it { should compile.with_all_deps }
   it { should contain_log4j__appenders__rollingfile('test')}
 
   it { should_not contain_augeas('appender-test-timepolicy')}
