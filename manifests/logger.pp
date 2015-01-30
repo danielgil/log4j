@@ -1,4 +1,4 @@
-define log4j::logger($path, $level, $additivity){
+define log4j::logger($path, $level='ERROR', $additivity=true){
 
   validate_bool($additivity)
   validate_re($level, '^(?i:OFF|FATAL|ERROR|WARN|INFO|DEBUG|TRACE|ALL)$')
