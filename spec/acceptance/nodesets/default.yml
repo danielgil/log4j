@@ -1,5 +1,5 @@
 HOSTS:
-  skyeshared.test.env:
+  test:
     roles:
       - master
       - agent
@@ -7,7 +7,6 @@ HOSTS:
     box : centos-65-x64-virtualbox-nocm
     box_url : http://puppet-vagrant-boxes.puppetlabs.com/centos-65-x64-virtualbox-nocm.box
     hypervisor : vagrant
-    ip         : 10.0.2.15
 CONFIG:
     log_level: verbose
     type: git
