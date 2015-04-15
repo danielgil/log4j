@@ -132,7 +132,7 @@ log4j::appenders::rollingfile {'rollbaby':
   immediateflush       => true,
   ignoreexceptions     => true,
   layout               => '%d{ISO8601} [%t] %-2p %c{1} %m%n',
-  filepatterns         => 'logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log',
+  filepattern          => 'logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log',
   strategy_compression => '0',
   strategy_min         => '1',
   strategy_max         => '10',
