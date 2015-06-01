@@ -12,4 +12,5 @@ class log4j (
   create_resources(log4j::appenders::console, $filtered_data[2])
   create_resources(log4j::appenders::file, $filtered_data[3])
   create_resources(log4j::appenders::rollingfile, $filtered_data[4])
+  create_resources(log4j::appenders::gelf, $filtered_data[5])
 }

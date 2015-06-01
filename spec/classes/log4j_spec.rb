@@ -51,6 +51,11 @@ describe 'log4j' do
                 'type'           => 'file',
                 'filename'       => '/opt/otherapp/logs/access.log',
                 'layout'         => '%-2p %c{1} %m%n',
+            },
+            'gelfappender' => {
+                'type'           => 'gelf',
+                'protocol'       => 'UDP',
+                'layout'         => '%-2p %c{1} %m%n',
             }
           }
         }
@@ -74,5 +79,5 @@ describe 'log4j' do
          'layout'   => '%-2p %c{1} %m%n'
      })}
   it { should contain_log4j__appenders__rollingfile('someappender') }
-
+  it { should contain_log4j__appenders__gelf('gelfappender') }
 end

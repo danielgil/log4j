@@ -40,6 +40,14 @@ describe 'A server where we run the log4j Puppet module' do
             policy_time          => '1',
           }
 
+          log4j::appenders::gelf {'gelfy':
+            path     => $xmlpath,
+            protocol   => 'TCP',
+            server     => 'someserver.somedomain',
+            hostname   => 'localhost.localdomain',
+            layout   => '%L - %m%n',
+          }
+
           log4j::logger {'first.test':
             path       => $xmlpath,
             level      => 'INFO',
@@ -94,6 +102,11 @@ describe 'A server where we run the log4j Puppet module' do
                 'otherappender' => {
                     'type'           => 'file',
                     'filename'       => '/opt/otherapp/logs/access.log',
+                    'layout'         => '%-2p %c{1} %m%n',
+                },
+                'gelfyappender' => {
+                    'type'           => 'gelf',
+                    'protocol'       => 'TCP',
                     'layout'         => '%-2p %c{1} %m%n',
                 }
               }

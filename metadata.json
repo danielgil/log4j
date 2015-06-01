@@ -1,6 +1,6 @@
 {
   "name": "danielgil-log4j",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "author": "Daniel Gil",
   "license": "Apache-2.0",
   "summary": "Manages log4j configuration files",
@@ -15,7 +15,7 @@
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "12.04", "10.04" ]
+      "operatingsystemrelease": [ "14.04", "12.04", "10.04" ]
     }
   ],
   "dependencies": [

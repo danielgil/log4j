@@ -4,6 +4,7 @@
 #  - Hash of log4j::appenders::console
 #  - Hash of log4j::appenders::file
 #  - Hash of log4j::appenders::rollingfile
+#  - Hash of log4j::appenders::gelf
 # The intention is that these hashes can then be called with
 # the create_resources() function
 
@@ -19,6 +20,7 @@ module Puppet::Parser::Functions
     console_appenders      = {}
     rolling_file_appenders = {}
     file_appenders         = {}
+    gelf_appenders         = {}
 
     # Extract loggers and appenders
     configfiles.each do |key, value|
@@ -31,9 +33,10 @@ module Puppet::Parser::Functions
       console_appenders[key]      = appenders[key] if value['type'] =~ /^console$/i
       rolling_file_appenders[key] = appenders[key] if value['type'] =~ /^rollingfile$/i
       file_appenders[key]         = appenders[key] if value['type'] =~ /^file$/i
+      gelf_appenders[key]         = appenders[key] if value['type'] =~ /^gelf$/i
       appenders[key].delete('type')
     end
 
-    [configfiles, loggers, console_appenders, file_appenders, rolling_file_appenders]
+    [configfiles, loggers, console_appenders, file_appenders, rolling_file_appenders, gelf_appenders]
   end
 end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'yaml_to_log4j' do
 
     # Empty hash as argument
-    it { should run.with_params({}).and_return([{},{},{},{},{}]) }
+    it { should run.with_params({}).and_return([{},{},{},{},{},{}]) }
 
     # Argument that is not a hash
     it { should run.with_params('notahash').and_raise_error(Puppet::ParseError) }
@@ -54,6 +54,11 @@ describe 'yaml_to_log4j' do
                     'type'           => 'file',
                     'filename'       => '/opt/otherapp/logs/access.log',
                     'layout'         => '%-2p %c{1} %m%n',
+                },
+                'gelfappender' => {
+                    'type'           => 'gelf',
+                    'protocol'       => 'TCP',
+                    'layout'         => '%-2p %c{1} %m%n',
                 }
             }
         }
@@ -83,7 +88,11 @@ describe 'yaml_to_log4j' do
                             'filename'       => '/opt/someapp/logs/error.log',
                             'layout'         => '%d{ISO8601} [%t] %-2p %c{1} %m%n',
                             'policy_startup' => false,
-                            'policy_size'    => '200 Mb'}}
+                            'policy_size'    => '200 Mb'}},
+        # log4j::appenders::gelf
+        {'gelfappender' => {'path'           => '/tmp/otherfile.xml',
+                            'protocol'       => 'TCP',
+                            'layout'         => '%-2p %c{1} %m%n'}}
     ]
 
     it { should run.with_params(input).and_return(output) }
