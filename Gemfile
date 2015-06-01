@@ -10,9 +10,9 @@ group :test do
 end
 
 group :development do
-  gem 'minitest', '~>4.0'
+  gem 'minitest'
   gem 'minitest-reporters'
-  gem 'beaker', '~> 1.20.1'
+  gem 'beaker'
   gem 'beaker-rspec'
   gem 'vagrant-wrapper'
 end
