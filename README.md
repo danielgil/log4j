@@ -60,6 +60,12 @@ log4j::data:
                 layout        : '%d{ISO8601} [%t] %-2p %c{1} %m%n'
                 policy_startup: false
                 policy_size   : '200 Mb'
+            anotherappender:
+                type          : 'gelf'
+                layout        : '%d{ISO8601} [%t] %-2p %c{1} %m%n'
+                protocol      : TCP
+                server        : someserver.somedomain
+                port          : 1234
 ```
 
 ## Usage (from Puppet Manifests)
@@ -143,6 +149,20 @@ log4j::appenders::rollingfile {'rollbaby':
 }
 ```
 
+The `GELF` appender connects to a Graylog server on a GELF TCP or GELF UDP input.
+Only `path` is required.
+```
+log4j::appenders::gelf {'example':
+  path             => '/tmp/config.xml,
+  protocol         => 'TCP',
+  server           => 'somegraylogserver.somedomain',
+  port             => '12201',
+  layout           => '%m%n',
+  hostname         => 'myserver.somedomain',
+  additionalfields => 'key1=value1,key2=value2',
+}
+```
+
 #### Add Loggers ####
 To To add a logger for a specific class, use the name of the class as the name of the `logger`.
 
@@ -156,7 +176,7 @@ log4j::logger {'my.class':
 
 ## Limitations
 
-1. Supported appenders: `Console`, `File`, `RollingFile`. Next in line: `Syslog`.
+1. Supported appenders: `Console`, `File`, `RollingFile` and `Gelf`.
 2. For now, `File` and `RollingFile` only use `PatternLayout` and do not accept `Filters`.
 
 ## Contributing
