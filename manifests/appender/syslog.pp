@@ -1,6 +1,5 @@
-define log4j::appenders::syslog(
+define log4j::appender::syslog(
   $path,
-
 ){
   augeas {"appender-${name}":
     incl    =>  $path,
