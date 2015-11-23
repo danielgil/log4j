@@ -1,10 +1,13 @@
-define log4j::logger($path, $level='ERROR', $additivity=true){
+define log4j::logger(
+  $path,
+  $level = 'ERROR',
+  $additivity = true){
 
   validate_bool($additivity)
   validate_re($level, '^(?i:OFF|FATAL|ERROR|WARN|INFO|DEBUG|TRACE|ALL)$')
 
   augeas {$name:
-    incl    =>  $path,
+    incl    => $path,
     lens    => 'Xml.lns',
     changes => [
       "set Configuration/Loggers/Logger[./#attribute/name = '${name}']/#attribute/name ${name}",

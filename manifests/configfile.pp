@@ -7,6 +7,8 @@ define log4j::configfile(
   $monitorInterval = '30',
   $rootLevel       = 'ERROR',
   $xmllint         = true,
+  $loggers         = {},
+  $appenders       = {},
 ){
   validate_re($path, '.+\.xml$')
   validate_absolute_path($path)
@@ -14,6 +16,8 @@ define log4j::configfile(
   validate_bool($replace)
   validate_re($monitorInterval, '^\d+$')
   validate_bool($xmllint)
+  validate_hash($loggers)
+  validate_hash($appenders)
 
   file {$path:
     ensure  => present,
@@ -23,6 +27,9 @@ define log4j::configfile(
     replace => $replace,
     content => template('log4j/base.xml.erb'),
   }
+
+  create_resources(log4j::logger, $loggers)
+  create_resources(log4j::appender, $appenders)
 
   # Apply all changes after the base skeleton has been installed
   Augeas <| incl == $name |> { require => File[$name]}
