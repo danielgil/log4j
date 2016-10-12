@@ -74,6 +74,7 @@ define log4j::appenders::rollingfile(
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/#attribute/bufferedIO ${bufferedio}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/#attribute/bufferSize ${buffersize}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/#attribute/fileName '${filename}'",
+    "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/#attribute/filePattern '${filepattern}'",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/#attribute/immediateFlush ${immediateflush}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/#attribute/ignoreExceptions ${ignoreexceptions}",
     "set Configuration/Appenders/RollingFile[./#attribute/name = '${name}']/DefaultRolloverStrategy/#attribute/fileIndex ${strategy_fileindex}",
